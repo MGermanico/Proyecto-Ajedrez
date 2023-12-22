@@ -61,12 +61,12 @@ ARQUITECTURA:
 
 		-Un método void muestraTablero() 	---------------------->	  que muestre el tablero y la puntuación..
 
-		-Un método void menu(sc) 	------------------------------>	  que servirá para encapsular el bucle de jugadas.
+		-Un método void menu(Scanner sc) 	---------------------->	  que servirá para encapsular el bucle de jugadas.
 
 		-Un método boolean jugada(boolean blancas, Scanner sc) 	------>	  que pedirá al usuario su siguiente movimiento y hará las comprobaciones necesarias para decidir si tiene que repetirlo o si es válido
 
 	
-	-AjedUtils.java: 		-------------------------------------------------->	Es un archivo con multitud de utilidades necesarias para la sencilla elaboración del programa en el archivo ejecutable, entre ellas deberá contener:
+	-AjedUtils.java: 		-------------------------------------------------->	Es un archivo abstracto con multitud de utilidades necesarias para la sencilla elaboración del programa en el archivo ejecutable, entre ellas deberá contener:
 
 		-Un método boolean comprobaciones(int f1, int c1, int f2, int c2)  ------->	que llame a todas las comprobaciones necesarias, de esta manera encapsular cada una de estas en un método distinto, facilitando así un motivo en caso de haber un movimiento ilegal.
 		
@@ -83,32 +83,32 @@ ARQUITECTURA:
 		-Un método int letrasANumeros(String str) 	-------------------------->	que pase de letras a numeros (A -> 1 / B -> 2 / ...) para facilitar el uso de las filas
 
 	
-	-Pieza.java: 		-------------------------------------------------->	Objeto del cual nacerán todas las piezas. Contendrá atributos y métodos generales a todas las piezas:
+	-Pieza.java: 		---------------------------------------------------------->	Objeto del cual nacerán todas las piezas. Contendrá atributos y métodos generales a todas las piezas:
 
-		-Un método comprobacionMov(int f1, int c1, int f2, int c2)   ----->	este método debe de sobreescribirse en cada pieza para que al referenciar este, se ejecute el particular de la pieza en cuestión.
+		-Un método boolean comprobacionMov(int f1, int c1, int f2, int c2)   ----->	este método debe de sobreescribirse en cada pieza para que al referenciar este, se ejecute el particular de la pieza en cuestión.
 
-		-Un método toString() @override		-------------------------->	un método toString que mostrará el nombre de la pieza. (prácticamente igual que el getNombre pero añade espacios a los lados).
+		-Un método toString() @override		---------------------------------->	un método toString que mostrará el nombre de la pieza. (prácticamente igual que el getNombre pero añade espacios a los lados).
 
-		-Getter y setter de los siguientes atributos: 	 ----------------->	los getter y setter para modificar cómodamente los atributos
+		-Getter y setter de los siguientes atributos: 	 ------------------------->	los getter y setter para modificar cómodamente los atributos
 			-boolean esBlanco
 			-int valor
 			-String nombre
 
 
-	-*cadapieza*.java: 		------------------------------------------------->	Cada una de las piezas particularmente. Deben de tener "extends Pieza".
+	-*cadapieza*.java: 		--------------------------------------------------------->	Cada una de las piezas particularmente. Deben de tener "extends Pieza".
 
-		-Un método constructor(String nombre, int valor, boolean esBlanco)   ---->	método constructor para crear cada pieza en una sola línea con todos los atributos específicados.
+		-Un método constructor(String nombre, int valor, boolean esBlanco)   ------------>	@override método constructor para crear cada pieza en una sola línea con todos los atributos específicados.
 
-		-(SOLO PARA LA PIEZA VACÍO): Un método toString()@override    ----------->	no solo añade espacios a los lados, añade los espacios necesarios para que al mostrar el tablero salga cuadrado.
+		-(SOLO PARA LA PIEZA VACÍO): Un constructor solo para vacio    ------------------>	@override Vacio(): se establece directamente valor 0, esBlanco=true, nombre="    ".
 
-		-Un método comprobacionMov(int f1, int c1, int f2, int c2)    ----------->	es un metodo @override del padre Pieza.java.
+		-Un método boolean comprobacionMov(int f1, int c1, int f2, int c2)    ----------->	es un metodo @override del padre Pieza.java.
 
 
-	-Tablero.java:			--------------------------->	Objeto abstracto que tendrá el tablero.
+	-Tablero.java:			----------------------------------->	Objeto abstracto que tendrá el tablero.
 		
-		-Un atributo: Pieza[][] tablero		----------->	un array 9x9 (el marco + el 8x8 del tablero de ajedrez) que simulará el tablero
+		-Un atributo: static Pieza[][] tablero		----------->	un array 9x9 (el marco + el 8x8 del tablero de ajedrez) que simulará el tablero.
 
-		-Un método colocaTablero(tablero)	----------->	creará para cada posición la pieza correspondiente (en el 1,1 una torre blanca, 1,2 un caballo blanco, ...).
+		-Un método colocaTablero()	--------------------------->	creará para cada posición la pieza correspondiente (en el 1,1 una torre blanca, 1,2 un caballo blanco, ...).
 
 
 -------		
