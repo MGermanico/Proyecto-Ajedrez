@@ -23,8 +23,9 @@ public class Exe {
     }
     public static void muestraTablero(){
         for (int fila = 0; fila < Tablero.tablero.length; fila++) {
+            System.out.println("----------------------------------------------------------------------------------------");
             for (int columna = 0; columna < Tablero.tablero[fila].length; columna++) {
-                System.out.print(Tablero.tablero[fila][columna].toString());
+                System.out.print(Tablero.tablero[fila][columna].toString() + " | ");
             }
             System.out.println("");
         }
@@ -40,7 +41,9 @@ public class Exe {
     }
     public static boolean jugada(boolean blancas, Scanner sc){
         boolean bien = true;
-        
+        if (blancas) {System.out.print("Mueven blancas(d2 d4):\t");
+        }else System.out.print("Mueven negras(d7 d5):\t");
+        String res = sc.nextLine();
         return bien;
     }
 }

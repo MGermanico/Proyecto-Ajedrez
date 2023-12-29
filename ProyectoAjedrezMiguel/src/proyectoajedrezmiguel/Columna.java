@@ -11,7 +11,7 @@ package proyectoajedrezmiguel;
 public class Columna extends Pieza{
     
     public Columna(int num) {
-        super(true, 0, "   " + num + "   ");
+        super(true, 0, "   " + Character.toString(AjedUtils.numerosALetras(num)) + "   ");
     }
     
 }

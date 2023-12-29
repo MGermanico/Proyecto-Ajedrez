@@ -11,7 +11,7 @@ package proyectoajedrezmiguel;
 public class Fila extends Pieza{
     
     public Fila(int num) {
-        super(true, 0, "   " + Character.toString(AjedUtils.numerosALetras(num)) + "   ");
+        super(true, 0, "   " + num + "   ");
     }
     
 }

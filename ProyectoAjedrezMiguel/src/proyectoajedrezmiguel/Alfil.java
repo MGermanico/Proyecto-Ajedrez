@@ -9,9 +9,9 @@ package proyectoajedrezmiguel;
  *
  * @author migue
  */
-public class Alifl extends Pieza{
+public class Alfil extends Pieza{
     
-    public Alifl(boolean esBlanco, int valor, String nombre) {
+    public Alfil(boolean esBlanco, int valor, String nombre) {
         super(esBlanco, valor, nombre);
     }
 //    public boolean comprobacionMov(int f1, int c1, int f2, int c2){
