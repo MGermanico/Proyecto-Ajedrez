@@ -20,9 +20,9 @@ public class Pieza {
 //        return bien;
 //    }
 //    @Override
-//    public String toString() {
-//        return "";
-//    }
+    public String toString() {
+        return this.getNombre();
+    }
 
     public Pieza(boolean esBlanco, int valor, String nombre) {
         this.esBlanco = esBlanco;

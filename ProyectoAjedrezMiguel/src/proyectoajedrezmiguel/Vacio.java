@@ -12,7 +12,7 @@ package proyectoajedrezmiguel;
 public class Vacio extends Pieza{
     
     public Vacio() {
-        super(true, 0, "      ");
+        super(true, 0, "       ");
     }
 //    public boolean comprobacionMov(int f1, int c1, int f2, int c2){
 //        boolean bien = true;
