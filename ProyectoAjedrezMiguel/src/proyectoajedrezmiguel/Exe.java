@@ -23,19 +23,24 @@ public class Exe {
     }
     public static void muestraTablero(){
         for (int fila = 0; fila < Tablero.tablero.length; fila++) {
-            System.out.println("----------------------------------------------------------------------------------------");
+            System.out.println("-----------------------------------------------------------------------------------------"
+                    +        "\n        |         |         |         |         |         |         |         |         |");
             for (int columna = 0; columna < Tablero.tablero[fila].length; columna++) {
                 System.out.print(Tablero.tablero[fila][columna].toString() + " | ");
             }
-            System.out.println("");
+            System.out.println("\n        |         |         |         |         |         |         |         |         |");
         }
+        System.out.println("-----------------------------------------------------------------------------------------");
     }
     public static void menu(Scanner sc){
         boolean seguir = true;
         boolean turnoBlancas = true;
+        boolean bien = true;
         while(seguir){
-            muestraTablero();
-            jugada(turnoBlancas, sc);
+            do{
+                muestraTablero();
+                bien = jugada(turnoBlancas, sc);
+            }while(!bien);
             turnoBlancas = !turnoBlancas;
         }
     }
@@ -44,6 +49,13 @@ public class Exe {
         if (blancas) {System.out.print("Mueven blancas(d2 d4):\t");
         }else System.out.print("Mueven negras(d7 d5):\t");
         String res = sc.nextLine();
+        bien = AjedUtils.compSintactica(res);
+        int f1 = Character.getNumericValue(res.charAt(1));
+        int c1 = AjedUtils.letrasANumeros(Character.toString(res.charAt(0)));
+        int f2 = Character.getNumericValue(res.charAt(4));
+        int c2 = AjedUtils.letrasANumeros(Character.toString(res.charAt(3)));
+        if(bien)bien = AjedUtils.comprobaciones (f1, c1, f2, c2);
+        if(bien)Tablero.tablero[f1][c1].movimiento(f1, c1, f2, c2);
         return bien;
     }
 }

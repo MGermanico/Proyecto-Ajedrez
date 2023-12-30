@@ -10,16 +10,21 @@ package proyectoajedrezmiguel;
  * @author migue
  */
 public abstract class AjedUtils {
-//    public boolean comprobaciones(int f1, int c1, int f2, int c2){
-//        boolean bien = true;
-//        
-//        return bien;
-//    }
-//    public boolean compSintactica(String str){
-//        boolean bien = true;
-//        
-//        return bien;
-//    }
+    public static boolean comprobaciones(int f1, int c1, int f2, int c2){
+        boolean bien = true;
+        
+        return bien;
+    }
+    public static boolean compSintactica(String str){
+        boolean bien = true;
+        if(bien)bien = str.length() == 5;
+        if(bien)bien = Character.isLetter(str.charAt(0));
+        if(bien)bien = Character.isDigit(str.charAt(1));
+        if(bien)bien = ' ' == str.charAt(2);
+        if(bien)bien = Character.isLetter(str.charAt(3));
+        if(bien)bien = Character.isDigit(str.charAt(4));
+        return bien;
+    }
 //    public boolean compEnTablero(int f1, int c1, int f2, int c2){
 //        boolean bien = true;
 //        

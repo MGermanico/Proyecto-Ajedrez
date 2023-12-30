@@ -13,7 +13,10 @@ public class Pieza {
     private boolean esBlanco;
     private int valor;
     private String nombre;
-    
+    public void movimiento(int f1,int c1,int f2,int c2){
+        Tablero.tablero[f2][c2] = Tablero.tablero[f1][c1];
+        Tablero.tablero[f1][c1] = new Vacio();
+    }
 //    public boolean comprobacionMov(int f1, int c1, int f2, int c2){
 //        boolean bien = true;
 //        
