@@ -17,12 +17,13 @@ public class Pieza {
         Tablero.tablero[f2][c2] = Tablero.tablero[f1][c1];
         Tablero.tablero[f1][c1] = new Vacio();
     }
-//    public boolean comprobacionMov(int f1, int c1, int f2, int c2){
-//        boolean bien = true;
-//        
-//        return bien;
-//    }
-//    @Override
+    public boolean comprobacionMov(int f1, int c1, int f2, int c2){
+        boolean bien = false;
+        System.out.println(AjedUtils.error("Sin comprobación asignada"));
+        return bien;
+    }
+    
+    @Override
     public String toString() {
         return this.getNombre();
     }

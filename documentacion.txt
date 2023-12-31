@@ -66,21 +66,23 @@ ARQUITECTURA:
 		-Un método boolean jugada(boolean blancas, Scanner sc) 	------>	  que pedirá al usuario su siguiente movimiento y hará las comprobaciones necesarias para decidir si tiene que repetirlo o si es válido
 
 	
-	-AjedUtils.java: 		-------------------------------------------------->	Es un archivo abstracto con multitud de utilidades necesarias para la sencilla elaboración del programa en el archivo ejecutable, entre ellas deberá contener:
+	-AjedUtils.java: 	------------------------------------------------------------------------->	Es un archivo abstracto con multitud de utilidades necesarias para la sencilla elaboración del programa en el archivo ejecutable, entre ellas deberá contener:
 
-		-Un método boolean comprobaciones(int f1, int c1, int f2, int c2)  ------->	que llame a todas las comprobaciones necesarias, de esta manera encapsular cada una de estas en un método distinto, facilitando así un motivo en caso de haber un movimiento ilegal.
+		-Un método String comprobaciones(int f1, int c1, int f2, int c2, boolean blanco)  ------->	que llame a todas las comprobaciones necesarias, de esta manera encapsular cada una de estas en un método distinto, facilitando así un motivo en caso de haber un movimiento ilegal. Este método devolverá un string con un "" en caso de que haya salido bien, o un texto con el fallo que ha habido en la comprobación
 		
-		-Un método boolean compSintactica(String str)	-------------------------->	que debe devolver si el String está escrito de la manera "ax by".
+		-Un método boolean compSintactica(String str)	----------------------------------------->	que debe devolver si el String está escrito de la manera "ax by".
 
-		-Un método boolean compEnTablero(int f1, int c1, int f2, int c2)  -------->	que compruebe que el movimiento sucede de una casilla dentro del tablero, a otra dentro del tablero.
+		-Un método boolean compEnTablero(int f1, int c1, int f2, int c2)  ----------------------->	que compruebe que el movimiento sucede de una casilla dentro del tablero, a otra dentro del tablero.
 
-		-Un método boolean compTuColor(int f1, int c1, int f2, int c2)    -------->	que compruebe que estás usando una pieza de tu color.
+		-Un método boolean compTuColor(int f1, int c1, boolean esBlanco)    --------------------->	que compruebe que estás usando una pieza de tu color.
 
-		-Un método boolean compParticular(int f1, int c1, int f2, int c2)  ------->	que llamará al método particular de cada una de las piezas, ya que cada una tiene un tipo de movimiento distinto, con unas restricciones distintas.
+		-Un método boolean compComiendo(int f2, int c2, boolean esBlanco)   --------------------->	que compruebe que se está comiendo a un Vacio(), o una pieza del otro color.
 
-		-Un método char numerosALetras(int n) 	---------------------------------->	que pase un numero a la letra correspondiente (1 -> A / 2 -> B / ...) para facilitar el uso de las filas
+		----------------------------------------------------------------------------------------->	LA COMPROBACIÓN PARTICULAR ESTÁ EN LA PROPIA PIEZA: que llamará al método particular de cada una de las piezas, ya que cada una tiene un tipo de movimiento distinto, con unas restricciones distintas.
 
-		-Un método int letrasANumeros(String str) 	-------------------------->	que pase de letras a numeros (A -> 1 / B -> 2 / ...) para facilitar el uso de las filas
+		-Un método char numerosALetras(int n) 	------------------------------------------------->	que pase un numero a la letra correspondiente (1 -> A / 2 -> B / ...) para facilitar el uso de las filas
+
+		-Un método int letrasANumeros(String str) 	----------------------------------------->	que pase de letras a numeros (A -> 1 / B -> 2 / ...) para facilitar el uso de las filas
 
 	
 	-Pieza.java: 		---------------------------------------------------------->	Objeto del cual nacerán todas las piezas. Contendrá atributos y métodos generales a todas las piezas:

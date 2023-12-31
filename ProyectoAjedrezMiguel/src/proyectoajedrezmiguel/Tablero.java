@@ -33,11 +33,11 @@ public abstract class Tablero {
                     if (fila == 7){                                                                                     //Peones[N]
                         Tablero.tablero[fila][columna] = Tablero.creaPeones(false);
                     }else{                                                                                              //Resto de piezas negras
-                        if(columna == 1 || columna == 8){Tablero.tablero[fila][columna] = Tablero.creaTorres(false);             //Torres
-                        }else if(columna == 2 || columna == 7){Tablero.tablero[fila][columna] = Tablero.creaCaballos(false);     //Caballos
-                        }else if(columna == 3 || columna == 6){Tablero.tablero[fila][columna] = Tablero.creaAlfiles(false);      //Alfiles
-                        }else if(columna == 4){Tablero.tablero[fila][columna] = Tablero.creaReyes(false);        //Reyes
-                        }else if(columna == 5)Tablero.tablero[fila][columna] = Tablero.creaDamas(false);         //Damas
+                        if(columna == 1 || columna == 8){Tablero.tablero[fila][columna] = Tablero.creaTorres(false);              //Torres
+                        }else if(columna == 2 || columna == 7){Tablero.tablero[fila][columna] = Tablero.creaCaballos(false);      //Caballos
+                        }else if(columna == 3 || columna == 6){Tablero.tablero[fila][columna] = Tablero.creaAlfiles(false);       //Alfiles
+                        }else if(columna == 4){Tablero.tablero[fila][columna] = Tablero.creaReyes(false);                         //Reyes
+                        }else if(columna == 5)Tablero.tablero[fila][columna] = Tablero.creaDamas(false);                          //Damas
                     }
                 }else{
                     Tablero.tablero[fila][columna] = new Vacio();

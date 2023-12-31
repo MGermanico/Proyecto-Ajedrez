@@ -14,9 +14,11 @@ public class Caballo extends Pieza{
     public Caballo(boolean esBlanco, int valor, String nombre) {
         super(esBlanco, valor, nombre);
     }
-//    public boolean comprobacionMov(int f1, int c1, int f2, int c2){
-//        boolean bien = true;
-//        
-//        return bien;
-//    }
+    public boolean comprobacionMov(int f1, int c1, int f2, int c2){
+        boolean bien = true;
+        if (f2 == f1 + 1 || f2 == f1 - 1) {                     //
+            
+        }
+        return bien;
+    }
 }

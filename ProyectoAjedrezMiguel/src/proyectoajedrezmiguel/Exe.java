@@ -45,17 +45,25 @@ public class Exe {
         }
     }
     public static boolean jugada(boolean blancas, Scanner sc){
-        boolean bien = true;
+        boolean bien;
         if (blancas) {System.out.print("Mueven blancas(d2 d4):\t");
         }else System.out.print("Mueven negras(d7 d5):\t");
         String res = sc.nextLine();
         bien = AjedUtils.compSintactica(res);
-        int f1 = Character.getNumericValue(res.charAt(1));
-        int c1 = AjedUtils.letrasANumeros(Character.toString(res.charAt(0)));
-        int f2 = Character.getNumericValue(res.charAt(4));
-        int c2 = AjedUtils.letrasANumeros(Character.toString(res.charAt(3)));
-        if(bien)bien = AjedUtils.comprobaciones (f1, c1, f2, c2);
-        if(bien)Tablero.tablero[f1][c1].movimiento(f1, c1, f2, c2);
+        if (bien) {
+            int f1 = Character.getNumericValue(res.charAt(1));
+            int c1 = AjedUtils.letrasANumeros(Character.toString(res.charAt(0)));
+            int f2 = Character.getNumericValue(res.charAt(4));
+            int c2 = AjedUtils.letrasANumeros(Character.toString(res.charAt(3)));
+            String str = AjedUtils.comprobaciones (f1, c1, f2, c2, blancas);
+            if (str.equals("")) {
+                bien = true;
+            }else{
+                bien = false;
+                System.out.print(str);
+            }
+            if(bien)Tablero.tablero[f1][c1].movimiento(f1, c1, f2, c2);
+        }else System.out.print(AjedUtils.error("mala sintaxis, los movimientos son del tipo (ax by)"));
         return bien;
     }
 }

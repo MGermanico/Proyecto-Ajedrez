@@ -10,10 +10,19 @@ package proyectoajedrezmiguel;
  * @author migue
  */
 public abstract class AjedUtils {
-    public static boolean comprobaciones(int f1, int c1, int f2, int c2){
-        boolean bien = true;
-        
-        return bien;
+    public static String comprobaciones(int f1, int c1, int f2, int c2, boolean blancas){
+        boolean bien;
+        String str = "";                                                        //este String guardará el mensaje de error o estará vacío en caso de ser exitoso
+        bien = AjedUtils.compEnTablero(f1, c1, f2, c2);
+        if(bien){ bien = AjedUtils.compTuColor(f1, c1, blancas); 
+            if(bien){ bien = AjedUtils.compComiendo(f2, c2, blancas);
+                if(bien){ bien = Tablero.tablero[f1][c1].comprobacionMov(f1, c1, f2, c2);
+                    if(bien){str = "";
+                    }else str = AjedUtils.error("esa pieza no puede hacer ese movimiento.");
+                }else str = AjedUtils.error("no puedes comerte esa pieza");
+            }else str = AjedUtils.error("esa pieza no es de tu color");
+        }else str = AjedUtils.error("fuera del tablero");
+        return str;
     }
     public static boolean compSintactica(String str){
         boolean bien = true;
@@ -25,21 +34,23 @@ public abstract class AjedUtils {
         if(bien)bien = Character.isDigit(str.charAt(4));
         return bien;
     }
-//    public boolean compEnTablero(int f1, int c1, int f2, int c2){
-//        boolean bien = true;
-//        
-//        return bien;
-//    }
-//    public boolean compTuColor(int f1, int c1, int f2, int c2){
-//        boolean bien = true;
-//        
-//        return bien;
-//    }
-//    public boolean compParticular(int f1, int c1, int f2, int c2){
-//        boolean bien = true;
-//        
-//        return bien;
-//    }
+    public static boolean compEnTablero(int f1, int c1, int f2, int c2){
+        boolean bien = true;
+        if(bien)bien = (f1 < 9 && 0 < f1) && (c1 < 9 && 0 < c1) && (f2 < 9 && 0 < f2) && (c2 < 9 && 0 < c2);
+        return bien;
+    }
+    public static boolean compTuColor(int f1, int c1, boolean blancas){
+        boolean bien = true;
+        bien = blancas == Tablero.tablero[f1][c1].isEsBlanco();
+        return bien;
+    }
+    public static boolean compComiendo(int f2, int c2, boolean blancas){        //
+        boolean bien = true;
+        if (!Tablero.tablero[f2][c2].getNombre().equals("       ")) {
+            bien = Tablero.tablero[f2][c2].isEsBlanco() != blancas;
+        }
+        return bien;
+    }
     public static char numerosALetras(int n){
         char l = ' ';
         if (n == 0) {
@@ -90,4 +101,9 @@ public abstract class AjedUtils {
         }
         return n;
     }
+    public static String error(String str){
+        String ret = "\n\t\tERROR: " + str + "\n\n";
+        return ret;
+    }
+    public static int distancia(int a, int b){return (int)Math.abs(a - b);}
 }
