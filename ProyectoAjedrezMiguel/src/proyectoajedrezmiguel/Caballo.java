@@ -16,9 +16,11 @@ public class Caballo extends Pieza{
     }
     public boolean comprobacionMov(int f1, int c1, int f2, int c2){
         boolean bien = true;
-        if (f2 == f1 + 1 || f2 == f1 - 1) {                     //
-            
-        }
+        if (f2 == f1 + 1 || f2 == f1 - 1) {                     //lineas horizontales
+            bien = (c2 == c1 + 2) || (c2 == c1 - 2);
+        }else if (c2 == c1 + 1 || c2 == c1 - 1) {               //linea vertical
+            bien = (f2 == f1 + 2) || (f2 == f1 - 2);
+        }else bien = false;
         return bien;
     }
 }
