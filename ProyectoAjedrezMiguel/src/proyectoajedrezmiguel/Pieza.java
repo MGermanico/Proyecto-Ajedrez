@@ -23,17 +23,26 @@ public class Pieza {
         return bien;
     }
     
+    public boolean apuntando(int f, int c){
+        boolean bien = false;
+        System.out.println(AjedUtils.error("Sin apuntar asignado"));
+        return bien;
+    }
+    
     @Override
     public String toString() {
         return this.getNombre();
     }
-
+    public boolean soyRey(){
+        return false;
+    }
+    //--------------------------------------------------------------------------
     public Pieza(boolean esBlanco, int valor, String nombre) {
         this.esBlanco = esBlanco;
         this.valor = valor;
         this.nombre = nombre;
     }
-    
+    //--------------------------------------------------------------------------
     public boolean isEsBlanco() {
         return esBlanco;
     }

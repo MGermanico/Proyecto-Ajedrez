@@ -40,6 +40,9 @@ public class Exe {
             do{
                 muestraTablero();
                 bien = jugada(turnoBlancas, sc);
+                if (AjedUtils.Jaque(turnoBlancas)) {
+                    System.out.println("Jaque");
+                }else System.out.println("NO");
             }while(!bien);
             turnoBlancas = !turnoBlancas;
         }

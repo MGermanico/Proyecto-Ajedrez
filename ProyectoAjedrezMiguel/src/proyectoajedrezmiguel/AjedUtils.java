@@ -51,6 +51,25 @@ public abstract class AjedUtils {
         }
         return bien;
     }
+    public static boolean Jaque(boolean blancas){
+        boolean noJaque= true;
+        for (int fila = 1; fila < Tablero.tablero.length; fila++) {
+            for (int columna = 1; columna < Tablero.tablero[fila].length; columna++) {
+                if(noJaque && Tablero.tablero[fila][columna].isEsBlanco() != blancas && !Tablero.tablero[fila][columna].getNombre().equals("       ")){
+                    noJaque = !Tablero.tablero[fila][columna].apuntando(fila, columna);
+//                    System.out.println("3");
+                }
+            }
+        }
+        return !noJaque;
+    }
+    public static boolean jaqueada(boolean blanco, int f, int c){
+        boolean ret = true;
+        if (f < 9 && 0 < f && c < 9 && 0 < c) {
+            ret = Tablero.tablero[f][c].soyRey() && Tablero.tablero[f][c].isEsBlanco() != blanco;
+        }
+        return ret;
+    }
     public static char numerosALetras(int n){
         char l = ' ';
         if (n == 0) {
