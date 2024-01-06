@@ -29,15 +29,5 @@ public class Peon extends Pieza{
         }else bien = false;
         return bien;
     }
-    @Override
-    public boolean apuntando(int f, int c){
-        boolean bien = true;
-        int n;
-        if (Tablero.tablero[f][c].isEsBlanco()) {
-            n = 1;
-        }else n = -1;
-        bien = AjedUtils.jaqueada(!Tablero.tablero[f][c].isEsBlanco(), f+n, c+1);
-        if(bien)bien = AjedUtils.jaqueada(!Tablero.tablero[f][c].isEsBlanco(), f+n, c-1);
-        return bien;
-    }
+    
 }

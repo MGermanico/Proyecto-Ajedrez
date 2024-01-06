@@ -11,6 +11,8 @@ package proyectoajedrezmiguel;
  */
 public class Rey extends Pieza{
     
+    private boolean seMovio = false;
+    
     public Rey(boolean esBlanco, int valor, String nombre) {    
         super(esBlanco, valor, nombre);
     }
@@ -21,7 +23,16 @@ public class Rey extends Pieza{
     public boolean comprobacionMov(int f1, int c1, int f2, int c2){
         boolean bien = true;
         bien = AjedUtils.distancia(f1, f2) < 2 && AjedUtils.distancia(c1, c2) < 2;
+        if(bien)this.setSeMovio(true);
         return bien;
+    }
+
+    public boolean isSeMovio() {
+        return seMovio;
+    }
+
+    public void setSeMovio(boolean seMovio) {
+        this.seMovio = seMovio;
     }
     
 }

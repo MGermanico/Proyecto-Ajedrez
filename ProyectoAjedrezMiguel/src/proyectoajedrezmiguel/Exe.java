@@ -38,11 +38,12 @@ public class Exe {
         boolean bien = true;
         while(seguir){
             do{
+                if (AjedUtils.JaqueA(turnoBlancas)) {
+                    System.out.println("Jaque");
+                }
+                System.out.println();
                 muestraTablero();
                 bien = jugada(turnoBlancas, sc);
-                if (AjedUtils.Jaque(turnoBlancas)) {
-                    System.out.println("Jaque");
-                }else System.out.println("NO");
             }while(!bien);
             turnoBlancas = !turnoBlancas;
         }
@@ -64,6 +65,12 @@ public class Exe {
             }else{
                 bien = false;
                 System.out.print(str);
+            }
+            if (bien) {
+                Tablero.tablero[f1][c1].movimiento(f1, c1, f2, c2);
+                bien = !AjedUtils.JaqueA(blancas);
+                if(!bien)System.out.println(AjedUtils.error("evita el jaque"));
+                Tablero.tablero[f1][c1].movimiento(f2, c2, f1, c1);
             }
             if(bien)Tablero.tablero[f1][c1].movimiento(f1, c1, f2, c2);
         }else System.out.print(AjedUtils.error("mala sintaxis, los movimientos son del tipo (ax by)"));

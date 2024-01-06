@@ -51,24 +51,111 @@ public abstract class AjedUtils {
         }
         return bien;
     }
-    public static boolean Jaque(boolean blancas){
-        boolean noJaque= true;
-        for (int fila = 1; fila < Tablero.tablero.length; fila++) {
-            for (int columna = 1; columna < Tablero.tablero[fila].length; columna++) {
-                if(noJaque && Tablero.tablero[fila][columna].isEsBlanco() != blancas && !Tablero.tablero[fila][columna].getNombre().equals("       ")){
-                    noJaque = !Tablero.tablero[fila][columna].apuntando(fila, columna);
-//                    System.out.println("3");
+    public static boolean JaqueA(boolean blancas){
+        boolean jaque= false;
+        int fr = 0, cr = 0;
+        for (int fila = 0; fila < Tablero.tablero.length; fila++) {
+            for (int columna = 0; columna < Tablero.tablero[fila].length; columna++) {
+                if (Tablero.tablero[fila][columna].getNombre().contains("Rey") && Tablero.tablero[fila][columna].isEsBlanco() == blancas) {
+                    fr = fila;
+                    cr = columna;
                 }
             }
         }
-        return !noJaque;
-    }
-    public static boolean jaqueada(boolean blanco, int f, int c){
-        boolean ret = true;
-        if (f < 9 && 0 < f && c < 9 && 0 < c) {
-            ret = Tablero.tablero[f][c].soyRey() && Tablero.tablero[f][c].isEsBlanco() != blanco;
+        int lado = 0,  arr = 0,  ab = 0,  der = 0,  izq = 0, i = 0;
+        if(!jaque){                                                         //comprobacion de lados (torre)
+            while(lado < 4){
+                arr = 0;
+                ab = 0;
+                der = 0;
+                izq = 0;
+                if (lado == 0) {
+                    arr = 1;
+                    i = AjedUtils.distancia(fr, 1);
+                }else if (lado == 1) {
+                    ab = 1;
+                    i = AjedUtils.distancia(fr, 8);
+                }else if (lado == 2) {
+                    der = 1;
+                    i = AjedUtils.distancia(cr, 8);
+                }else if (lado == 3) {
+                    izq = 1;
+                    i = AjedUtils.distancia(cr, 1);
+                }
+                for (int j = 1; j <= i; j++) {
+                    Pieza pieza = Tablero.tablero[fr+j*ab-j*arr][cr+der*j-izq*j];
+//                    System.out.print(pieza.getNombre() + " ");
+                    if(!jaque && !pieza.getNombre().equals("       ")){
+                        if (!jaque && (pieza.getNombre().contains("Torr") || pieza.getNombre().contains("Dama")) && pieza.isEsBlanco() != blancas) {
+                            jaque = true;
+                        }else{
+                            jaque = false;
+                        }
+                        j = i+1;
+                    }
+                }
+//                System.out.println(lado + ";" + jaque);
+                lado ++;
+            }
         }
-        return ret;
+//        System.out.println("----------------------------------");
+        if (!jaque) {                                                       //comprobación de diagonales (Alfil)
+            lado = 0;
+            while(lado < 4){
+                arr = 0;
+                ab = 0;
+                der = 0;
+                izq = 0;
+                if (lado == 0) {                            // arr-der
+                    arr = 1;
+                    der = 1;
+                    i = (int)Math.min(AjedUtils.distancia(fr, 1), AjedUtils.distancia(cr, 8));         // ab-izq
+                }else if (lado == 1) {
+                    ab = 1;
+                    izq = 1;
+                    i = (int)Math.min(AjedUtils.distancia(fr, 8), AjedUtils.distancia(cr, 1));
+                }else if (lado == 2) {                      // ab-der
+                    der = 1;
+                    ab = 1;
+                    i = (int)Math.min(AjedUtils.distancia(cr, 8), AjedUtils.distancia(fr, 8));
+                }else if (lado == 3) {                      // arr-izq
+                    izq = 1;
+                    arr = 1;
+                    i = (int)Math.min(AjedUtils.distancia(cr, 1), AjedUtils.distancia(fr, 1));
+                }
+                for (int j = 1; j <= i; j++) {
+                    Pieza pieza = Tablero.tablero[fr+j*ab-j*arr][cr+der*j-izq*j];
+//                    System.out.print(pieza.getNombre() + " ");
+                    if(!jaque && !pieza.getNombre().equals("       ")){
+                        if (!jaque && (pieza.getNombre().contains("Alfi") || pieza.getNombre().contains("Dama")) && pieza.isEsBlanco() != blancas) {
+                            jaque = true;
+                        }else{
+                            jaque = false;
+                        }
+                        j = i+1;
+                    }
+                }
+//                System.out.println(lado + ";" + jaque);
+                lado ++;
+            }
+        }
+        if(!jaque && fr+2 < 9 && 0 < fr+2 && cr+1 < 9 && 0 < cr+1)jaque = Tablero.tablero[fr+2][cr+1].getNombre().contains("Caba") && Tablero.tablero[fr+2][cr+1].isEsBlanco() != blancas;  //comprobaciones del caballo
+        if(!jaque && fr+2 < 9 && 0 < fr+2 && cr-1 < 9 && 0 < cr-1)jaque = Tablero.tablero[fr+2][cr-1].getNombre().contains("Caba") && Tablero.tablero[fr+2][cr-1].isEsBlanco() != blancas;
+        if(!jaque && fr-2 < 9 && 0 < fr-2 && cr+1 < 9 && 0 < cr+1)jaque = Tablero.tablero[fr-2][cr+1].getNombre().contains("Caba") && Tablero.tablero[fr-2][cr+1].isEsBlanco() != blancas;
+        if(!jaque && fr-2 < 9 && 0 < fr-2 && cr-1 < 9 && 0 < cr-1)jaque = Tablero.tablero[fr-2][cr-1].getNombre().contains("Caba") && Tablero.tablero[fr-2][cr-1].isEsBlanco() != blancas;
+        if(!jaque && fr+1 < 9 && 0 < fr+1 && cr+2 < 9 && 0 < cr+2)jaque = Tablero.tablero[fr+1][cr+2].getNombre().contains("Caba") && Tablero.tablero[fr+1][cr+2].isEsBlanco() != blancas;
+        if(!jaque && fr+1 < 9 && 0 < fr+1 && cr-2 < 9 && 0 < cr-2)jaque = Tablero.tablero[fr+1][cr-2].getNombre().contains("Caba") && Tablero.tablero[fr+1][cr-2].isEsBlanco() != blancas;
+        if(!jaque && fr-1 < 9 && 0 < fr-1 && cr+2 < 9 && 0 < cr+2)jaque = Tablero.tablero[fr-1][cr+2].getNombre().contains("Caba") && Tablero.tablero[fr-1][cr+2].isEsBlanco() != blancas;
+        if(!jaque && fr-1 < 9 && 0 < fr-1 && cr-2 < 9 && 0 < cr-2)jaque = Tablero.tablero[fr-1][cr-2].getNombre().contains("Caba") && Tablero.tablero[fr-1][cr-2].isEsBlanco() != blancas;
+        
+        if(!jaque){
+            if (blancas) {
+                lado = +1;
+            }else lado = -1;
+            if(!jaque && fr+lado < 9 && 0 < fr+lado && cr+lado < 9 && 0 < cr+lado)jaque = Tablero.tablero[fr+lado][cr+1].getNombre().contains("Peon") && Tablero.tablero[fr+lado][cr+1].isEsBlanco() != blancas;
+            if(!jaque && fr+lado < 9 && 0 < fr+lado && cr+lado < 9 && 0 < cr+lado)jaque = Tablero.tablero[fr+lado][cr-1].getNombre().contains("Peon") && Tablero.tablero[fr+lado][cr-1].isEsBlanco() != blancas;
+        }
+        return jaque;
     }
     public static char numerosALetras(int n){
         char l = ' ';

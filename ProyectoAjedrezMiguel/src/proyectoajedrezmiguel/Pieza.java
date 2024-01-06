@@ -23,12 +23,6 @@ public class Pieza {
         return bien;
     }
     
-    public boolean apuntando(int f, int c){
-        boolean bien = false;
-        System.out.println(AjedUtils.error("Sin apuntar asignado"));
-        return bien;
-    }
-    
     @Override
     public String toString() {
         return this.getNombre();
