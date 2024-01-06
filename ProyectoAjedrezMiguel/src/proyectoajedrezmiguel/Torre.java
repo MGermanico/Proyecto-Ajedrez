@@ -10,7 +10,7 @@ package proyectoajedrezmiguel;
  * @author migue
  */
 public class Torre extends Pieza{
-    
+    private boolean seMovio = false;
     public Torre(boolean esBlanco, int valor, String nombre) {
         super(esBlanco, valor, nombre);
     }
@@ -35,6 +35,16 @@ public class Torre extends Pieza{
         for (int i = 1; i < dis; i++) {
             if(bien) bien = Tablero.tablero[f1+(i*movimientoVer*direccion)][c1+(i*movimientoHor*direccion)].getNombre().equals("       ");
         }
+        if(bien)this.setSeMovio(true);
         return bien;
     }
+
+    public boolean isSeMovio() {
+        return seMovio;
+    }
+
+    public void setSeMovio(boolean seMovio) {
+        this.seMovio = seMovio;
+    }
+    
 }
